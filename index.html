@@ -15,7 +15,7 @@
   <meta property="og:title" content="Panes y Más 🥐 Desayunos Artesanales Frescos" />
   <meta property="og:description" content="Desayunos Ayacuchanos auténticos con recetas de casa. Personaliza tu combinación perfecta: elige entre nuestros panes artesanales y bebidas premium. Delivery gratis. La tradición en tu puerta." />
   <meta property="og:type" content="business.business" />
-  <meta property="og:url" content="https://tudominio.com" />
+  <meta property="og:url" content="https://panesymas.online" />
   <meta property="og:image" content="https://res.cloudinary.com/psaowhxo/image/upload/v1789145644/ChatGPT_Image_11_sept_2026_11_53_32.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -2502,7 +2502,7 @@
         </div>
 
         <div style="margin-bottom:1.5rem;">
-          <span class="modal-label">¿Con qué pan deseas? <span style="color:var(--dorado);font-weight:600;">*</span></span>
+          <span class="modal-label">¿Con qué pan deseas?</span>
           <div style="display:flex;gap:0.7rem;flex-wrap:wrap;" id="panOpciones">
             <button class="pan-opcion" data-pan="Baguette">Baguette</button>
             <button class="pan-opcion" data-pan="Francés">Francés</button>
@@ -2511,7 +2511,7 @@
         </div>
 
         <div style="margin-bottom:1.5rem;">
-          <span class="modal-label">¿Cómo lo deseas? <span style="color:var(--dorado);font-weight:600;">*</span></span>
+          <span class="modal-label">¿Cómo lo deseas?</span>
           <div style="display:flex;gap:0.7rem;flex-wrap:wrap;" id="preparacionOpciones">
             <button class="preparacion-opcion" data-preparacion="Fresco">Fresco</button>
             <button class="preparacion-opcion" data-preparacion="Tostado">Tostado</button>
@@ -2610,7 +2610,7 @@
         <div class="footer-column">
           <h4>Contacto</h4>
           <p>
-            <a href="tel:+51954209131" style="color: rgba(255,255,255,0.7); font-weight: 400;">+51 954 209 131</a><br>
+            <a href="tel:+51967216313" style="color: rgba(255,255,255,0.7); font-weight: 400;">+51 967 216 313</a><br>
             <a href="mailto:info@panesymas.pe" style="color: rgba(255,255,255,0.7); font-weight: 400;">info@panesymas.pe</a>
           </p>
         </div>
@@ -3067,14 +3067,8 @@
     }
 
     function showSuccessMessage() {
-      if (!selectedPan) {
-        alert('Por favor selecciona el tipo de pan que deseas.');
-        return;
-      }
-      if (!selectedPreparacion) {
-        alert('Por favor selecciona cómo lo deseas (Normal o Tostado).');
-        return;
-      }
+      // Pan y preparación son opcionales; si no eligen pan, se asume Chapla
+      var panCombo = selectedPan || 'Chapla';
 
       // Calcular total de extras temporales
       var totalExtras = 0;
@@ -3098,7 +3092,7 @@
       msg += '━━━━━━━━━━━━━━━━━━━━\n\n';
       msg += '*Detalle del pedido:*\n';
       msg += '  • *' + currentComboName + '*\n';
-      msg += '    ├─ 2x Panes ' + selectedPan + ' (' + selectedPreparacion + ')\n';
+      msg += '    ├─ 2x Panes ' + panCombo + (selectedPreparacion ? ' (' + selectedPreparacion + ')' : '') + '\n';
       if (selectedBebidaNombre) {
         msg += '    ├─ 1x Bebida: ' + selectedBebidaNombre + '\n';
       }
@@ -3113,7 +3107,7 @@
       msg += '*TOTAL: S/ ' + totalFinal.toFixed(2) + '*\n';
       msg += '━━━━━━━━━━━━━━━━━━━━';
 
-      var url = 'https://wa.me/51954209131?text=' + encodeURIComponent(msg);
+      var url = 'https://wa.me/51967216313?text=' + encodeURIComponent(msg);
       window.open(url, '_blank');
       closeModal();
       // Limpiar carrito
@@ -3721,14 +3715,8 @@
     });
 
     pedidoEnviarBtn.addEventListener('click', function() {
-      if (!panSeleccionado) {
-        alert('Por favor selecciona el tipo de pan que deseas.');
-        return;
-      }
-      if (preparacionSeleccionada.length === 0) {
-        alert('Por favor selecciona cómo lo deseas (Normal o Tostado).');
-        return;
-      }
+      // Pan y preparación son opcionales; si no eligen pan, se asume Chapla
+      var panFinal = panSeleccionado || 'Chapla';
       const items = Object.values(canastaItems);
 
       // Detectar promo activa
@@ -3776,7 +3764,7 @@
       });
 
       // Mostrar pan y preparación seleccionados
-      msg += '\n*Pan elegido:* ' + panSeleccionado + '\n';
+      msg += '\n*Pan elegido:* ' + panFinal + '\n';
       if (preparacionSeleccionada.length > 0) {
         msg += '*Preparación:* ' + preparacionSeleccionada.join(' + ') + '\n';
       }
@@ -3794,7 +3782,7 @@
       msg += '*TOTAL: S/ ' + totalFinal.toFixed(2) + '*\n';
       msg += '━━━━━━━━━━━━━━━━━━━━';
 
-      var url = 'https://wa.me/51954209131?text=' + encodeURIComponent(msg);
+      var url = 'https://wa.me/51967216313?text=' + encodeURIComponent(msg);
       window.open(url, '_blank');
       pedidoModal.classList.remove('active');
       // Limpiar carrito
